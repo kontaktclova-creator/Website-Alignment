@@ -285,7 +285,7 @@ export default function Home() {
       <ParticleBackground />
 
       {/* ── GOLDEN LIGHT RAYS (CSS) ── */}
-      <div style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0, overflow: "hidden", willChange: "transform" }}>
+      <div style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0, overflow: "hidden" }}>
         {/* Main golden diagonal ray */}
         <div style={{
           position: "absolute",
@@ -294,7 +294,7 @@ export default function Home() {
           width: "70%",
           height: "100%",
           background: "conic-gradient(from 50deg at 20% 90%, transparent 0deg, rgba(180,100,5,0.18) 15deg, rgba(220,140,10,0.28) 22deg, rgba(180,100,5,0.14) 30deg, transparent 45deg)",
-          filter: "blur(4px)",
+          filter: "blur(8px)",
           transform: "rotate(-15deg) translateY(10%)",
         }} />
         {/* Secondary softer ray */}
@@ -305,7 +305,7 @@ export default function Home() {
           width: "50%",
           height: "80%",
           background: "conic-gradient(from 48deg at 15% 95%, transparent 0deg, rgba(200,120,5,0.1) 12deg, rgba(240,160,20,0.18) 18deg, rgba(200,120,5,0.08) 28deg, transparent 40deg)",
-          filter: "blur(8px)",
+          filter: "blur(20px)",
           transform: "rotate(-12deg) translateY(5%)",
         }} />
         {/* Ambient glow - bottom left */}
@@ -316,7 +316,17 @@ export default function Home() {
           width: "50%",
           height: "60%",
           background: "radial-gradient(ellipse, rgba(180,90,5,0.15) 0%, transparent 70%)",
-          filter: "blur(18px)",
+          filter: "blur(40px)",
+        }} />
+        {/* Ambient glow - top right */}
+        <div style={{
+          position: "absolute",
+          top: "-5%",
+          right: "0%",
+          width: "30%",
+          height: "40%",
+          background: "radial-gradient(ellipse, rgba(160,80,0,0.08) 0%, transparent 70%)",
+          filter: "blur(50px)",
         }} />
         {/* Sparkle line along the ray */}
         <div style={{
@@ -326,7 +336,7 @@ export default function Home() {
           width: "45%",
           height: "2px",
           background: "linear-gradient(90deg, transparent, rgba(255,200,80,0.4), rgba(255,220,120,0.6), rgba(255,200,80,0.3), transparent)",
-          filter: "blur(1px)",
+          filter: "blur(2px)",
           transform: "rotate(-20deg)",
         }} />
       </div>
