@@ -601,44 +601,63 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Split panels */}
+          {/* Split panels – always side by side */}
           <AnimatePresence mode="wait">
             <motion.div
               key={activeProject}
-              className="grid md:grid-cols-2 gap-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
             >
-              {/* BEFORE */}
-              <div className="card-glass rounded-2xl overflow-hidden flex flex-col">
-                <div className="px-5 py-3 flex items-center gap-2 flex-shrink-0" style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
-                  <div className="flex gap-1.5">
-                    <div className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
-                  </div>
-                  <span className="text-xs font-medium text-white/30 ml-2 uppercase tracking-widest">Før</span>
+              {/* Column labels */}
+              <div className="flex gap-4 mb-3">
+                <div className="flex-1 flex items-center gap-2 px-2">
+                  <span className="text-xs font-semibold uppercase tracking-widest text-white/30">Før</span>
+                  <div className="flex-1 h-px" style={{ background: "rgba(255,255,255,0.07)" }} />
                 </div>
-                <div className="overflow-y-scroll scrollbar-thin bg-gray-100" style={{ height: 520 }}>
-                  <img src={currentProject.before} alt={currentProject.beforeAlt} className="w-full block" />
+                <div className="flex-1 flex items-center gap-2 px-2">
+                  <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "#d4860a" }}>Etter</span>
+                  <div className="flex-1 h-px" style={{ background: "rgba(212,134,10,0.25)" }} />
+                  <span className="px-2 py-0.5 rounded-md text-[10px] font-semibold flex-shrink-0" style={{ background: "rgba(180,100,10,0.2)", color: "#d4860a" }}>Clova</span>
                 </div>
               </div>
 
-              {/* AFTER */}
-              <div className="rounded-2xl overflow-hidden flex flex-col glow-border" style={{ background: "rgba(255,255,255,0.03)" }}>
-                <div className="px-5 py-3 flex items-center gap-2 flex-shrink-0" style={{ borderBottom: "1px solid rgba(212,134,10,0.2)" }}>
-                  <div className="flex gap-1.5">
-                    <div className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
-                    <div className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
+              {/* Side-by-side panels, always horizontal */}
+              <div className="flex gap-4" style={{ minWidth: 0 }}>
+                {/* BEFORE – scrollable */}
+                <div className="card-glass rounded-2xl overflow-hidden flex flex-col" style={{ flex: "1 1 0", minWidth: 0 }}>
+                  <div className="px-4 py-2.5 flex items-center gap-1.5 flex-shrink-0" style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+                    <div className="w-2 h-2 rounded-full bg-red-500/60" />
+                    <div className="w-2 h-2 rounded-full bg-yellow-500/60" />
+                    <div className="w-2 h-2 rounded-full bg-green-500/60" />
                   </div>
-                  <span className="text-xs font-medium text-white/50 ml-2 uppercase tracking-widest">Etter</span>
-                  <span className="ml-auto px-2 py-0.5 rounded-md text-[10px] font-semibold" style={{ background: "rgba(180,100,10,0.2)", color: "#d4860a" }}>Clova</span>
+                  <div className="overflow-y-scroll scrollbar-thin bg-gray-100" style={{ height: 520 }}>
+                    <img src={currentProject.before} alt={currentProject.beforeAlt} className="w-full block" />
+                  </div>
                 </div>
-                <div className="overflow-hidden" style={{ height: 520 }}>
-                  <img src={currentProject.after} alt={currentProject.afterAlt} className="w-full h-full object-cover object-top block" />
+
+                {/* Vertical divider */}
+                <div className="flex flex-col items-center gap-2 flex-shrink-0 pt-10">
+                  <div className="w-px flex-1" style={{ background: "linear-gradient(to bottom, transparent, rgba(212,134,10,0.4), transparent)" }} />
+                  <div className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0" style={{ border: "1px solid rgba(212,134,10,0.4)", background: "rgba(180,100,10,0.15)" }}>
+                    <svg className="w-3 h-3" fill="none" stroke="#d4860a" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h8M8 12h8M8 17h8" />
+                    </svg>
+                  </div>
+                  <div className="w-px flex-1" style={{ background: "linear-gradient(to bottom, transparent, rgba(212,134,10,0.4), transparent)" }} />
+                </div>
+
+                {/* AFTER – fixed height crop */}
+                <div className="rounded-2xl overflow-hidden flex flex-col glow-border" style={{ flex: "1 1 0", minWidth: 0, background: "rgba(255,255,255,0.03)" }}>
+                  <div className="px-4 py-2.5 flex items-center gap-1.5 flex-shrink-0" style={{ borderBottom: "1px solid rgba(212,134,10,0.2)" }}>
+                    <div className="w-2 h-2 rounded-full bg-red-500/60" />
+                    <div className="w-2 h-2 rounded-full bg-yellow-500/60" />
+                    <div className="w-2 h-2 rounded-full bg-green-500/60" />
+                  </div>
+                  <div className="overflow-hidden" style={{ height: 520 }}>
+                    <img src={currentProject.after} alt={currentProject.afterAlt} className="w-full h-full object-cover object-top block" />
+                  </div>
                 </div>
               </div>
             </motion.div>
