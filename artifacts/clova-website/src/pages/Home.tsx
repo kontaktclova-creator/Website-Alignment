@@ -245,13 +245,37 @@ export default function Home() {
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
-  function handleSubmit(e: React.FormEvent) {
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState(false);
+
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setSending(true);
+    setSendError(false);
     const { name, email, phone, message } = formData;
-    const subject = encodeURIComponent("Ny henvendelse fra Clova-nettside");
-    const body = encodeURIComponent(`Navn: ${name}\nE-post: ${email}\nTelefon: ${phone}\n\nMelding:\n${message}`);
-    window.location.href = `mailto:kontakt.clova@gmail.com?subject=${subject}&body=${body}`;
-    setSubmitted(true);
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/kontakt.clova@gmail.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          Telefon: phone,
+          Melding: message,
+          _subject: "Ny henvendelse fra Clova-nettside",
+          _captcha: "false",
+        }),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        setSendError(true);
+      }
+    } catch {
+      setSendError(true);
+    } finally {
+      setSending(false);
+    }
   }
 
   const currentProject = PROJECTS.find((p) => p.id === activeProject)!;
@@ -261,7 +285,7 @@ export default function Home() {
       <ParticleBackground />
 
       {/* ── GOLDEN LIGHT RAYS (CSS) ── */}
-      <div style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0, overflow: "hidden" }}>
+      <div style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0, overflow: "hidden", willChange: "transform" }}>
         {/* Main golden diagonal ray */}
         <div style={{
           position: "absolute",
@@ -270,7 +294,7 @@ export default function Home() {
           width: "70%",
           height: "100%",
           background: "conic-gradient(from 50deg at 20% 90%, transparent 0deg, rgba(180,100,5,0.18) 15deg, rgba(220,140,10,0.28) 22deg, rgba(180,100,5,0.14) 30deg, transparent 45deg)",
-          filter: "blur(8px)",
+          filter: "blur(4px)",
           transform: "rotate(-15deg) translateY(10%)",
         }} />
         {/* Secondary softer ray */}
@@ -281,7 +305,7 @@ export default function Home() {
           width: "50%",
           height: "80%",
           background: "conic-gradient(from 48deg at 15% 95%, transparent 0deg, rgba(200,120,5,0.1) 12deg, rgba(240,160,20,0.18) 18deg, rgba(200,120,5,0.08) 28deg, transparent 40deg)",
-          filter: "blur(20px)",
+          filter: "blur(8px)",
           transform: "rotate(-12deg) translateY(5%)",
         }} />
         {/* Ambient glow - bottom left */}
@@ -292,17 +316,7 @@ export default function Home() {
           width: "50%",
           height: "60%",
           background: "radial-gradient(ellipse, rgba(180,90,5,0.15) 0%, transparent 70%)",
-          filter: "blur(40px)",
-        }} />
-        {/* Ambient glow - top right */}
-        <div style={{
-          position: "absolute",
-          top: "-5%",
-          right: "0%",
-          width: "30%",
-          height: "40%",
-          background: "radial-gradient(ellipse, rgba(160,80,0,0.08) 0%, transparent 70%)",
-          filter: "blur(50px)",
+          filter: "blur(18px)",
         }} />
         {/* Sparkle line along the ray */}
         <div style={{
@@ -312,7 +326,7 @@ export default function Home() {
           width: "45%",
           height: "2px",
           background: "linear-gradient(90deg, transparent, rgba(255,200,80,0.4), rgba(255,220,120,0.6), rgba(255,200,80,0.3), transparent)",
-          filter: "blur(2px)",
+          filter: "blur(1px)",
           transform: "rotate(-20deg)",
         }} />
       </div>
@@ -614,12 +628,12 @@ export default function Home() {
               {/* BEFORE */}
               <div className="flex flex-col gap-2">
                 <span className="text-xs font-bold uppercase tracking-widest text-center" style={{ color: "#e05555" }}>FØR</span>
-                <div className="rounded-xl md:rounded-2xl overflow-hidden" style={{ background: "#fff", border: "1px solid rgba(255,255,255,0.1)" }}>
+                <div className="rounded-xl md:rounded-2xl overflow-hidden" style={{ background: "#fff", border: "1px solid rgba(255,255,255,0.1)", height: 360 }}>
                   <img
                     src={currentProject.before}
                     alt={currentProject.beforeAlt}
                     className="w-full block"
-                    style={{ display: "block", maxHeight: 420, objectFit: "cover", objectPosition: "top" }}
+                    style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }}
                   />
                 </div>
               </div>
@@ -627,12 +641,12 @@ export default function Home() {
               {/* AFTER */}
               <div className="flex flex-col gap-2">
                 <span className="text-xs font-bold uppercase tracking-widest text-center" style={{ color: "#4caf82" }}>ETTER</span>
-                <div className="rounded-xl md:rounded-2xl overflow-hidden glow-border" style={{ background: "#fff" }}>
+                <div className="rounded-xl md:rounded-2xl overflow-hidden glow-border" style={{ background: "#fff", height: 360 }}>
                   <img
                     src={currentProject.after}
                     alt={currentProject.afterAlt}
                     className="w-full block"
-                    style={{ display: "block", maxHeight: 420, objectFit: "cover", objectPosition: "top" }}
+                    style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }}
                   />
                 </div>
               </div>
@@ -800,11 +814,20 @@ export default function Home() {
                       placeholder="Fortell oss litt om bedriften din og hva du ønsker å oppnå..."
                     />
                   </div>
-                  <button type="submit" className="w-full py-3.5 rounded-xl text-sm font-semibold btn-gold transition-all flex items-center justify-center gap-2 mt-2">
-                    Send melding
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
+                  {sendError && (
+                    <p className="text-xs text-red-400/80 text-center">Noe gikk galt. Prøv igjen eller send e-post direkte.</p>
+                  )}
+                  <button
+                    type="submit"
+                    disabled={sending}
+                    className="w-full py-3.5 rounded-xl text-sm font-semibold btn-gold transition-all flex items-center justify-center gap-2 mt-2 disabled:opacity-60"
+                  >
+                    {sending ? "Sender…" : "Send melding"}
+                    {!sending && (
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    )}
                   </button>
                 </form>
               )}

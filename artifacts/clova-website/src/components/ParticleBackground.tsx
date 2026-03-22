@@ -9,6 +9,8 @@ interface Particle {
   size: number;
   life: number;
   maxLife: number;
+  r: number;
+  g: number;
 }
 
 export default function ParticleBackground() {
@@ -17,11 +19,12 @@ export default function ParticleBackground() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
     let animId: number;
     const particles: Particle[] = [];
+    let frame = 0;
 
     function resize() {
       if (!canvas) return;
@@ -30,21 +33,23 @@ export default function ParticleBackground() {
     }
 
     function spawnParticle(): Particle {
-      if (!canvas) return { x: 0, y: 0, vx: 0, vy: 0, alpha: 0, size: 0, life: 0, maxLife: 100 };
-      const maxLife = 120 + Math.random() * 180;
+      if (!canvas) return { x: 0, y: 0, vx: 0, vy: 0, alpha: 0, size: 0, life: 0, maxLife: 100, r: 200, g: 130 };
+      const maxLife = 140 + Math.random() * 160;
       return {
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: -Math.random() * 0.4 - 0.1,
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: -Math.random() * 0.35 - 0.08,
         alpha: 0,
-        size: Math.random() * 1.5 + 0.3,
+        size: Math.random() * 1.4 + 0.3,
         life: 0,
         maxLife,
+        r: 195 + Math.floor(Math.random() * 35),
+        g: 125 + Math.floor(Math.random() * 40),
       };
     }
 
-    for (let i = 0; i < 120; i++) {
+    for (let i = 0; i < 55; i++) {
       const p = spawnParticle();
       p.life = Math.random() * p.maxLife;
       particles.push(p);
@@ -52,23 +57,19 @@ export default function ParticleBackground() {
 
     function draw() {
       if (!canvas || !ctx) return;
+      frame++;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Draw particles
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
         const t = p.life / p.maxLife;
         const alpha = t < 0.15 ? t / 0.15 : t > 0.8 ? 1 - (t - 0.8) / 0.2 : 1;
-        p.alpha = alpha * 0.55;
+        p.alpha = alpha * 0.5;
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        // Gold tones
-        const r = 200 + Math.floor(Math.random() * 30);
-        const g = 130 + Math.floor(Math.random() * 40);
-        const b = 20;
-        ctx.fillStyle = `rgba(${r},${g},${b},${p.alpha})`;
+        ctx.fillStyle = `rgba(${p.r},${p.g},20,${p.alpha})`;
         ctx.fill();
 
         p.x += p.vx;
