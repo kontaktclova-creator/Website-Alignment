@@ -1,0 +1,161 @@
+Build a premium, high-converting marketing agency website for "Clova".
+
+IMPORTANT:
+I will upload:
+- Exact logo files (must be used exactly as provided, no redesign, no AI recreation)
+- Images of ads we have created
+- Images of before/after websites
+- Reference images for both desktop and mobile layout
+
+You MUST follow the layout and visual style from those reference images closely.
+
+DESIGN STYLE:
+- Dark premium theme (black / navy background)
+- Subtle gold/orange glow accents
+- Clean, minimal, high-end (NOT cluttered)
+- Smooth animations and transitions
+- Rounded cards and modern UI
+- Desktop-first design (very important), mobile optimized after
+
+---
+
+HERO SECTION (TOP):
+
+Left side:
+Headline:
+"Vi hjelper bedrifter med å få flere kunder – raskt."
+
+Subtext:
+"Vi er et nyoppstartet markedsføringsbyrå som allerede har hjulpet lokale bedrifter med å få flere kunder, økt synlighet og målbare resultater – på kort tid."
+
+CTA buttons:
+- "Få gratis analyse"
+- "Se hva vi tilbyr"
+
+Right side:
+- Dashboard-style cards showing results (clean UI)
+
+IMPORTANT:
+On DESKTOP:
+Include client logos inside this hero section (bottom area)
+
+On MOBILE:
+Move logos to the next section
+
+---
+
+SOCIAL PROOF SECTION:
+
+Title:
+"Bedrifter vi har samarbeidet med"
+
+Text:
+"Ekte resultater for ekte bedrifter – selv i oppstartsfasen"
+
+Use EXACT uploaded logos:
+- Nüdera
+- Lycke Frisør
+- YNOVA
+
+DO NOT recreate or stylize logos.
+
+---
+
+SERVICES SECTION (3 CARDS):
+
+1. Gratis analyse
+Short text: Vi analyserer bedriften din og viser deg nøyaktig hvordan du kan få flere kunder.
+
+2. Nettsider som konverterer
+Short text: Vi lager moderne nettsider som faktisk får besøkende til å bli kunder.
+
+3. Meta annonser
+Short text: Vi lager og optimaliserer annonser som gir flere kunder og salg.
+
+---
+
+ADS SECTION (VERY IMPORTANT):
+
+- Display the ads horizontally next to each other on desktop (NOT stacked)
+- Use 3 ad images that I upload
+- Each ad should be shown as a premium rounded card
+- Add subtle hover effect
+
+On mobile:
+- Show ads in a horizontal scroll (carousel style)
+
+---
+
+BEFORE / AFTER SECTION (VERY IMPORTANT):
+
+- Main focus: Golden Crown website
+- Show BEFORE and AFTER side-by-side (split layout)
+- BEFORE on left, AFTER on right
+
+- Add tabs or buttons above:
+  - Golden Crown (active by default)
+  - Other projects (optional later)
+
+- When switching tabs → change images dynamically
+
+IMPORTANT:
+- Only Golden Crown should be visible by default
+- Layout must match reference images I provided
+
+---
+
+PRICING SECTION:
+
+Nettside:
+- 4999 kr (engangs)
+- 499 kr / måned (vedlikehold)
+
+Annonser:
+- 1 måned gratis
+- 2499 kr / måned etterpå
+- Note: Annonsebudsjett til Meta betales separat
+
+---
+
+CONTACT SECTION:
+
+Form fields:
+- Navn
+- E-post
+- Telefonnummer (REQUIRED)
+- Hva trenger du hjelp med?
+
+When submitted:
+Send email to:
+kontakt.clova@gmail.com
+
+Also display:
+Email: kontakt.clova@gmail.com
+Phone: 46535459
+
+---
+
+UX REQUIREMENTS:
+
+- Smooth scrolling between sections
+- CTA buttons scroll to relevant sections
+- High-converting layout
+- Mobile responsive but desktop prioritized
+- Clean spacing and premium feel
+
+---
+
+LOGO RULE (VERY IMPORTANT):
+
+- Create a clean, premium "CLOVA" text logo
+- Minimal, modern typography
+- White or subtle gradient
+- Must look like a real agency brand (NOT playful, NOT rounded childish font)
+
+---
+
+GOAL:
+
+The website should feel like a high-end agency, even though it is new.
+Do NOT exaggerate claims.
+Focus on trust, real results, and clean design.
