@@ -1,0 +1,8 @@
+{
+  "buildCommand": "cd ../.. && pnpm --filter @workspace/clova-website run build",
+  "outputDirectory": "dist/public",
+  "installCommand": "cd ../.. && pnpm install",
+  "env": {
+    "BASE_PATH": "/"
+  }
+}

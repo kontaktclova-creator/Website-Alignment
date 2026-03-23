@@ -2,7 +2,6 @@
   "buildCommand": "pnpm --filter @workspace/clova-website run build",
   "outputDirectory": "artifacts/clova-website/dist/public",
   "installCommand": "pnpm install",
-  "framework": "vite",
   "env": {
     "BASE_PATH": "/"
   }
