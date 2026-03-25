@@ -673,8 +673,26 @@ export default function Home() {
             title="Enkel, transparent prising"
             sub="Ingen bindingstid, ingen skjulte kostnader. Du vet alltid hva du betaler."
           />
+
+          {/* Price increase disclaimer */}
           <motion.div
-            className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto mt-14"
+            className="max-w-3xl mx-auto mt-10 flex items-start gap-3 px-4 py-3.5 rounded-xl"
+            style={{ background: "rgba(212,134,10,0.1)", border: "1px solid rgba(212,134,10,0.3)" }}
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <svg className="w-4 h-4 flex-shrink-0 mt-0.5" fill="none" stroke="#d4860a" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+            </svg>
+            <p className="text-xs leading-relaxed" style={{ color: "rgba(212,134,10,0.9)" }}>
+              <span className="font-semibold">Prisene vil snart øke.</span> Vi får stadig flere kunder og bedrifter vi samarbeider med – sikre deg nåværende pris før vi oppdaterer prisene.
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto mt-8"
             variants={stagger}
             initial="hidden"
             whileInView="show"
@@ -687,13 +705,13 @@ export default function Home() {
             >
               <div className="text-xs font-semibold uppercase tracking-widest mb-5" style={{ color: "#d4860a" }}>Nettside</div>
               <div className="flex items-baseline gap-2 mb-1">
-                <span className="text-4xl font-bold text-white">4&nbsp;999</span>
+                <span className="text-4xl font-bold text-white">5&nbsp;999</span>
                 <span className="text-white/40 text-sm">kr</span>
               </div>
               <div className="text-xs text-white/30 mb-5">Engangsbeløp</div>
               <div className="h-px mb-5" style={{ background: "rgba(255,255,255,0.07)" }} />
               <div className="flex items-baseline gap-2 mb-1">
-                <span className="text-2xl font-semibold text-white">499</span>
+                <span className="text-2xl font-semibold text-white">599</span>
                 <span className="text-white/40 text-sm">kr / måned</span>
               </div>
               <div className="text-xs text-white/30 mb-7">Vedlikehold og support</div>
@@ -726,7 +744,7 @@ export default function Home() {
               <div className="text-xs text-white/30 mb-5">Deretter</div>
               <div className="h-px mb-5" style={{ background: "rgba(255,255,255,0.07)" }} />
               <div className="flex items-baseline gap-2 mb-1">
-                <span className="text-2xl font-semibold text-white">2&nbsp;499</span>
+                <span className="text-2xl font-semibold text-white">3&nbsp;599</span>
                 <span className="text-white/40 text-sm">kr / måned</span>
               </div>
               <div className="text-xs text-white/30 mb-7">Annonsebudsjett til Meta betales separat</div>
