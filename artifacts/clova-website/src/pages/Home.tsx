@@ -528,6 +528,81 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── OM OSS ── */}
+      <section id="omboss" className="relative z-10 py-28 px-6 section-divider">
+        <div className="max-w-7xl mx-auto">
+          <SectionHeader
+            tag="Om oss"
+            title="Hvem er Clova?"
+            sub="Vi er et ungt, ambisiøst markedsføringsbyrå med ett mål: å hjelpe lokale bedrifter å vokse."
+          />
+          <div className="grid md:grid-cols-2 gap-12 items-center mt-16 max-w-5xl mx-auto">
+            {/* Left – story */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              className="space-y-5"
+            >
+              <p className="text-white/65 leading-relaxed text-sm">
+                Clova ble startet med en enkel overbevisning: lokale bedrifter fortjener den samme kvaliteten på digital markedsføring som store selskaper – uten de enorme prisene.
+              </p>
+              <p className="text-white/65 leading-relaxed text-sm">
+                Vi er spesialister på Meta-annonser og nettsideutvikling. Vi setter oss inn i virksomheten din, forstår målgruppen din, og leverer kampanjer og løsninger som faktisk konverterer besøkende til kunder.
+              </p>
+              <p className="text-white/65 leading-relaxed text-sm">
+                Allerede i oppstartsfasen har vi hjulpet bedrifter som Nüdera, Lycke Frisør og YNOVA med å skalere gjennom målrettede annonser og moderne nettsider – og vi er bare i gang.
+              </p>
+              <div className="pt-2">
+                <button
+                  onClick={() => scrollTo("kontakt")}
+                  className="btn-gold px-6 py-3 rounded-xl text-sm transition-all duration-200 flex items-center gap-2 w-fit"
+                >
+                  Ta kontakt
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </button>
+              </div>
+            </motion.div>
+
+            {/* Right – values */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              className="grid grid-cols-2 gap-4"
+            >
+              {[
+                { icon: "M13 10V3L4 14h7v7l9-11h-7z", label: "Rask levering", desc: "Vi setter i gang raskt og leverer resultater fra første uke." },
+                { icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z", label: "Resultatorientert", desc: "Vi måler alt og optimaliserer kontinuerlig for best mulig ROI." },
+                { icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z", label: "Personlig service", desc: "Du har alltid direkte kontakt – ingen mellommenn." },
+                { icon: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z", label: "Trygt og transparent", desc: "Ingen bindingstid, ingen skjulte kostnader. Alltid." },
+              ].map((v, i) => (
+                <motion.div
+                  key={v.label}
+                  className="card-glass rounded-2xl p-5"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center mb-3" style={{ background: "rgba(180,100,10,0.18)" }}>
+                    <svg className="w-4 h-4" fill="none" stroke="#d4860a" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d={v.icon} />
+                    </svg>
+                  </div>
+                  <div className="text-sm font-semibold text-white/90 mb-1">{v.label}</div>
+                  <p className="text-xs text-white/40 leading-relaxed">{v.desc}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* ── SERVICES ── */}
       <section id="tjenester" className="relative z-10 py-28 px-6 section-divider">
         <div className="max-w-7xl mx-auto">
