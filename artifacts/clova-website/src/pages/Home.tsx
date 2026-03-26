@@ -80,12 +80,13 @@ const ADS = [
   { src: "/ads/fratelli.png", alt: "Fratelli annonse" },
 ];
 
-type ProjectId = "fratelli" | "palermo";
+type ProjectId = "beijinghome" | "fratelli" | "palermo";
 // GOLDEN CROWN REMOVED TEMPORARILY – add back with: { id: "goldencrown", label: "Golden Crown", before: "/beforeafter/goldencrown-before.jpeg", after: "/beforeafter/goldencrown-after.png", beforeAlt: "Golden Crown – før", afterAlt: "Golden Crown – etter" },
 
 const PROJECTS: { id: ProjectId; label: string; before: string; after: string; beforeAlt: string; afterAlt: string }[] = [
-  { id: "fratelli",    label: "Fratelli",    before: "/beforeafter/fratelli-before.jpeg",    after: "/beforeafter/fratelli-after.png",    beforeAlt: "Fratelli – før",    afterAlt: "Fratelli – etter" },
-  { id: "palermo",     label: "Palermo",     before: "/beforeafter/palermo-before.jpeg",     after: "/beforeafter/palermo-after.png",     beforeAlt: "Palermo – før",     afterAlt: "Palermo – etter" },
+  { id: "beijinghome", label: "Beijing Home",  before: "/beforeafter/beijinghome-before.jpeg", after: "/beforeafter/beijinghome-after.png",  beforeAlt: "Beijing Home – før",  afterAlt: "Beijing Home – etter" },
+  { id: "fratelli",    label: "Fratelli",      before: "/beforeafter/fratelli-before.jpeg",    after: "/beforeafter/fratelli-after.png",    beforeAlt: "Fratelli – før",      afterAlt: "Fratelli – etter" },
+  { id: "palermo",     label: "Palermo",       before: "/beforeafter/palermo-before.jpeg",     after: "/beforeafter/palermo-after.png",     beforeAlt: "Palermo – før",       afterAlt: "Palermo – etter" },
 ];
 
 /* ─────────────── HELPERS ─────────────── */
@@ -233,7 +234,7 @@ function ClientResultCard({ c, delay }: { c: (typeof CLIENT_CARDS)[0]; delay: nu
 
 /* ─────────────── MAIN PAGE ─────────────── */
 export default function Home() {
-  const [activeProject, setActiveProject] = useState<ProjectId>("fratelli");
+  const [activeProject, setActiveProject] = useState<ProjectId>("beijinghome");
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [scrolled, setScrolled] = useState(false);
