@@ -80,10 +80,10 @@ const ADS = [
   { src: "/ads/fratelli.png", alt: "Fratelli annonse" },
 ];
 
-type ProjectId = "goldencrown" | "fratelli" | "palermo";
+type ProjectId = "fratelli" | "palermo";
+// GOLDEN CROWN REMOVED TEMPORARILY – add back with: { id: "goldencrown", label: "Golden Crown", before: "/beforeafter/goldencrown-before.jpeg", after: "/beforeafter/goldencrown-after.png", beforeAlt: "Golden Crown – før", afterAlt: "Golden Crown – etter" },
 
 const PROJECTS: { id: ProjectId; label: string; before: string; after: string; beforeAlt: string; afterAlt: string }[] = [
-  { id: "goldencrown", label: "Golden Crown", before: "/beforeafter/goldencrown-before.jpeg", after: "/beforeafter/goldencrown-after.png", beforeAlt: "Golden Crown – før", afterAlt: "Golden Crown – etter" },
   { id: "fratelli",    label: "Fratelli",    before: "/beforeafter/fratelli-before.jpeg",    after: "/beforeafter/fratelli-after.png",    beforeAlt: "Fratelli – før",    afterAlt: "Fratelli – etter" },
   { id: "palermo",     label: "Palermo",     before: "/beforeafter/palermo-before.jpeg",     after: "/beforeafter/palermo-after.png",     beforeAlt: "Palermo – før",     afterAlt: "Palermo – etter" },
 ];
@@ -233,7 +233,7 @@ function ClientResultCard({ c, delay }: { c: (typeof CLIENT_CARDS)[0]; delay: nu
 
 /* ─────────────── MAIN PAGE ─────────────── */
 export default function Home() {
-  const [activeProject, setActiveProject] = useState<ProjectId>("goldencrown");
+  const [activeProject, setActiveProject] = useState<ProjectId>("fratelli");
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -713,12 +713,12 @@ export default function Home() {
               {/* BEFORE */}
               <div className="flex flex-col gap-2">
                 <span className="text-xs font-bold uppercase tracking-widest text-center" style={{ color: "#e05555" }}>FØR</span>
-                <div className="rounded-xl md:rounded-2xl overflow-hidden" style={{ background: "#fff", border: "1px solid rgba(255,255,255,0.1)", height: 360 }}>
+                <div className="rounded-xl md:rounded-2xl overflow-hidden" style={{ background: "#f5f5f5", border: "1px solid rgba(255,255,255,0.1)" }}>
                   <img
                     src={currentProject.before}
                     alt={currentProject.beforeAlt}
                     className="w-full block"
-                    style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }}
+                    style={{ width: "100%", height: "auto", display: "block" }}
                   />
                 </div>
               </div>
@@ -726,12 +726,12 @@ export default function Home() {
               {/* AFTER */}
               <div className="flex flex-col gap-2">
                 <span className="text-xs font-bold uppercase tracking-widest text-center" style={{ color: "#4caf82" }}>ETTER</span>
-                <div className="rounded-xl md:rounded-2xl overflow-hidden glow-border" style={{ background: "#fff", height: 360 }}>
+                <div className="rounded-xl md:rounded-2xl overflow-hidden glow-border" style={{ background: "#f5f5f5" }}>
                   <img
                     src={currentProject.after}
                     alt={currentProject.afterAlt}
                     className="w-full block"
-                    style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }}
+                    style={{ width: "100%", height: "auto", display: "block" }}
                   />
                 </div>
               </div>
