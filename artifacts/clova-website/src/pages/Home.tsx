@@ -702,42 +702,45 @@ export default function Home() {
           </div>
 
           {/* Split panels */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeProject}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -16 }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="grid grid-cols-2 gap-3 md:gap-6"
-            >
-              {/* BEFORE */}
-              <div className="flex flex-col gap-2">
-                <span className="text-xs font-bold uppercase tracking-widest text-center" style={{ color: "#e05555" }}>FØR</span>
-                <div className="rounded-xl md:rounded-2xl overflow-hidden" style={{ background: "#f5f5f5", border: "1px solid rgba(255,255,255,0.1)" }}>
-                  <img
-                    src={currentProject.before}
-                    alt={currentProject.beforeAlt}
-                    className="w-full block"
-                    style={{ width: "100%", height: "auto", display: "block" }}
-                  />
+          <div className="flex justify-center">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeProject}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                className="grid grid-cols-2 gap-4 md:gap-6 w-full"
+                style={{ maxWidth: 680 }}
+              >
+                {/* BEFORE */}
+                <div className="flex flex-col gap-2">
+                  <span className="text-xs font-bold uppercase tracking-widest text-center" style={{ color: "#e05555" }}>FØR</span>
+                  <div className="card-glass rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.08)" }}>
+                    <img
+                      src={currentProject.before}
+                      alt={currentProject.beforeAlt}
+                      className="w-full block"
+                      style={{ width: "100%", height: "auto", display: "block" }}
+                    />
+                  </div>
                 </div>
-              </div>
 
-              {/* AFTER */}
-              <div className="flex flex-col gap-2">
-                <span className="text-xs font-bold uppercase tracking-widest text-center" style={{ color: "#4caf82" }}>ETTER</span>
-                <div className="rounded-xl md:rounded-2xl overflow-hidden glow-border" style={{ background: "#f5f5f5" }}>
-                  <img
-                    src={currentProject.after}
-                    alt={currentProject.afterAlt}
-                    className="w-full block"
-                    style={{ width: "100%", height: "auto", display: "block" }}
-                  />
+                {/* AFTER */}
+                <div className="flex flex-col gap-2">
+                  <span className="text-xs font-bold uppercase tracking-widest text-center" style={{ color: "#4caf82" }}>ETTER</span>
+                  <div className="card-glass rounded-2xl overflow-hidden glow-border">
+                    <img
+                      src={currentProject.after}
+                      alt={currentProject.afterAlt}
+                      className="w-full block"
+                      style={{ width: "100%", height: "auto", display: "block" }}
+                    />
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
       </section>
 
