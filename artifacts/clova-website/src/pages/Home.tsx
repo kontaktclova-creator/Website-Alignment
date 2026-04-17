@@ -205,6 +205,81 @@ function ResultsDashboard() {
   );
 }
 
+function ExpectedResultsCard() {
+  const { ref, isInView } = useScrollInView(0.2);
+  const benefits = [
+    {
+      icon: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6",
+      label: "Økt omsetning",
+      desc: "Flere besøkende blir betalende kunder.",
+    },
+    {
+      icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+      label: "Høyere inntjening",
+      desc: "Bedre marginer og lavere kostnad per kunde.",
+    },
+    {
+      icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z",
+      label: "Flere kunder",
+      desc: "Konkrete henvendelser hver eneste uke.",
+    },
+  ];
+  return (
+    <motion.div
+      ref={ref}
+      className="relative card-glass rounded-2xl p-7 md:p-8 w-full overflow-hidden glow-border"
+      initial={{ opacity: 0, y: 30, scale: 0.97 }}
+      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {/* Subtle gold radial glow */}
+      <div
+        className="absolute -top-20 -right-20 w-64 h-64 rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(212,134,10,0.18), transparent 70%)", filter: "blur(20px)" }}
+      />
+
+      <div className="relative">
+        <div className="flex items-center gap-2 mb-2">
+          <span className="w-2 h-2 rounded-full" style={{ background: "#4caf82", boxShadow: "0 0 10px #4caf82" }} />
+          <span className="text-xs font-semibold uppercase tracking-widest text-white/60">Hva du kan forvente</span>
+        </div>
+
+        <div className="mt-5 mb-6">
+          <div className="flex items-baseline gap-3 flex-wrap">
+            <span className="text-5xl md:text-6xl font-bold gold-gradient-text leading-none">400–800</span>
+            <span className="text-base text-white/60 font-medium">klikk første måned</span>
+          </div>
+          <p className="text-sm text-white/45 mt-3 leading-relaxed">
+            Med en ny nettside kombinert med profesjonelle Meta-annonser fra Clova kan du forvente <span className="text-white/75 font-medium">400–800 kvalifiserte klikk</span> første måneden – grunnlaget for reell vekst.
+          </p>
+        </div>
+
+        <div className="h-px mb-6" style={{ background: "rgba(255,255,255,0.07)" }} />
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {benefits.map((b, i) => (
+            <motion.div
+              key={b.label}
+              initial={{ opacity: 0, y: 14 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.25 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col gap-2"
+            >
+              <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: "rgba(180,100,10,0.18)" }}>
+                <svg className="w-4 h-4" fill="none" stroke="#d4860a" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d={b.icon} />
+                </svg>
+              </div>
+              <div className="text-sm font-semibold text-white/90">{b.label}</div>
+              <p className="text-xs text-white/40 leading-relaxed">{b.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 function ClientResultCard({ c, delay }: { c: (typeof CLIENT_CARDS)[0]; delay: number }) {
   const { ref, isInView } = useScrollInView(0.2);
   return (
@@ -463,7 +538,7 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               >
-                Vi er et nyoppstartet markedsføringsbyrå som allerede har hjulpet lokale bedrifter med å eskalere gjennom målrettede annonser, moderne nettsider og tydelig vekststrategi.
+                Vi er et markedsføringsbyrå som hjelper lokale bedrifter med <span className="text-white/80 font-medium">økt omsetning</span>, <span className="text-white/80 font-medium">høyere inntjening</span> og <span className="text-white/80 font-medium">flere kunder</span> – gjennom målrettede Meta-annonser og moderne nettsider.
               </motion.p>
 
               <motion.div
@@ -496,19 +571,18 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.5 }}
               >
                 <div className="text-sm font-medium text-white/80 mb-1">Bedrifter vi har jobbet med</div>
-                <div className="text-xs text-white/30 mb-5">I oppstartsfasen – men leverer allerede resultater for lokale bedrifter vi er stolte av å jobbe med.</div>
+                <div className="text-xs text-white/30 mb-5">Lokale bedrifter vi er stolte av å samarbeide med.</div>
                 <div className="flex items-center gap-6">
                   {[
-                    { src: "/logos/nudera.jpeg", alt: "Nüdera", bg: "#d9a8a2" },
                     { src: "/logos/lycke.jpeg", alt: "Lycke Frisør", bg: "#e8f0f8" },
-                    { src: "/logos/ynova.jpeg", alt: "YNOVA", bg: "#1a3a36" },
+                    { src: "/logos/alfreds.png", alt: "Alfreds", bg: "#0a0a0a" },
                   ].map((l) => (
                     <div key={l.alt} className="flex items-center gap-2">
                       <div
-                        className="rounded-lg overflow-hidden flex-shrink-0"
-                        style={{ background: l.bg, width: 48, height: 28 }}
+                        className="rounded-lg overflow-hidden flex-shrink-0 flex items-center justify-center"
+                        style={{ background: l.bg, width: 64, height: 32 }}
                       >
-                        <img src={l.src} alt={l.alt} className="w-full h-full object-cover" />
+                        <img src={l.src} alt={l.alt} className="w-full h-full object-contain" />
                       </div>
                     </div>
                   ))}
@@ -517,13 +591,8 @@ export default function Home() {
             </div>
 
             {/* RIGHT */}
-            <div className="flex flex-col gap-4 pt-4">
-              <ResultsDashboard />
-              <div className="grid grid-cols-3 gap-4">
-                {CLIENT_CARDS.map((c, i) => (
-                  <ClientResultCard key={c.id} c={c} delay={0.15 + i * 0.1} />
-                ))}
-              </div>
+            <div className="flex flex-col gap-5 pt-4">
+              <ExpectedResultsCard />
             </div>
           </div>
         </div>
@@ -553,7 +622,7 @@ export default function Home() {
                 Vi er spesialister på Meta-annonser og nettsideutvikling. Vi setter oss inn i virksomheten din, forstår målgruppen din, og leverer kampanjer og løsninger som faktisk konverterer besøkende til kunder.
               </p>
               <p className="text-white/65 leading-relaxed text-sm">
-                Allerede i oppstartsfasen har vi hjulpet bedrifter som Nüdera, Lycke Frisør og YNOVA med å skalere gjennom målrettede annonser og moderne nettsider – og vi er bare i gang.
+                Vi jobber tett med lokale bedrifter som Lycke Frisør og Alfreds, og hjelper dem å skalere gjennom målrettede annonser og moderne nettsider – med fokus på økt omsetning og flere kunder.
               </p>
               <div className="pt-2">
                 <button
@@ -645,6 +714,9 @@ export default function Home() {
             title="Kreativt som stopper scrollingen"
             sub="Vi produserer annonser som fanger oppmerksomhet og driver konverteringer."
           />
+          <p className="text-center text-[11px] text-white/30 italic max-w-2xl mx-auto mt-3 px-4">
+            * Annonsene vises som promo-eksempler vi har fått tillatelse til å produsere for byrået vårt – ikke et reelt klientsamarbeid.
+          </p>
           <motion.div
             className="hidden md:flex gap-6 mt-14 justify-center"
             variants={stagger}
@@ -681,6 +753,9 @@ export default function Home() {
             title="Nettsider vi har laget"
             sub="Se transformasjonen fra utdatert til profesjonell og konverterende."
           />
+          <p className="text-center text-[11px] text-white/30 italic max-w-2xl mx-auto mt-3 px-4">
+            * Nettsidene vises som promo-eksempler vi har fått tillatelse til å produsere for byrået vårt – ikke et reelt klientsamarbeid.
+          </p>
           {/* Tabs */}
           <div className="flex justify-center gap-2 mt-10 mb-10 flex-wrap">
             {PROJECTS.map((p) => (
@@ -779,7 +854,8 @@ export default function Home() {
           >
             {/* Nettside */}
             <motion.div
-              className="card-glass card-glass-hover rounded-2xl p-8"
+              className="relative rounded-2xl p-8 glow-border"
+              style={{ background: "rgba(255,255,255,0.04)" }}
               variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } } }}
             >
               <div className="text-xs font-semibold uppercase tracking-widest mb-5" style={{ color: "#d4860a" }}>Nettside</div>
@@ -815,9 +891,6 @@ export default function Home() {
               style={{ background: "rgba(255,255,255,0.04)" }}
               variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] } } }}
             >
-              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                <span className="px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest text-white btn-gold">Populær</span>
-              </div>
               <div className="text-xs font-semibold uppercase tracking-widest mb-5" style={{ color: "#d4860a" }}>Meta annonser</div>
               <div className="text-3xl font-bold gold-gradient-text mb-1">1 måned gratis</div>
               <div className="text-xs text-white/30 mb-5">Deretter</div>
